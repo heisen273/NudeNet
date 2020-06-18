@@ -25,6 +25,8 @@ REQUIRED = [
     'keras==2.2.4',
     'opencv-python==4.0.0.21',
     'keras-retinanet==0.5.0',
+    'requests',
+    'Pillow',
     'pydload'
 ]
 
