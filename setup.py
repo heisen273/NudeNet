@@ -27,6 +27,7 @@ REQUIRED = [
     'keras-retinanet==0.5.0',
     'requests',
     'Pillow',
+    'numpy',
     'pydload'
 ]
 
