@@ -1,13 +1,17 @@
+import io
 import os
 import keras
 import pydload
+import requests
 import numpy as np
+from PIL import Image
+
 
 def load_images(image_paths, image_size):
     '''
     Function for loading images into numpy arrays for passing to model.predict
     inputs:
-        image_paths: list of image paths to load
+        image_paths: list of image URL paths to load
         image_size: size into which images should be resized
     
     outputs:
@@ -20,7 +24,13 @@ def load_images(image_paths, image_size):
 
     for i, img_path in enumerate(image_paths):
         try:
-            image = keras.preprocessing.image.load_img(img_path, target_size = image_size)
+            imageData = requests.get(img_path).content
+
+            image = Image.open(io.BytesIO(imageData))
+            image = image.convert('RGB')
+            image = image.resize(image_size, Image.NEAREST)
+            
+            #image = keras.preprocessing.image.load_img(img_path, target_size = image_size)
             image = keras.preprocessing.image.img_to_array(image)
             image /= 255
             loaded_images.append(image)
@@ -59,7 +69,7 @@ class Classifier():
     def classify(self, image_paths = [], batch_size = 32, image_size = (256, 256), categories = ['unsafe', 'safe']):
         '''
             inputs:
-                image_paths: list of image paths or can be a string too (for single image)
+                image_paths: list of image URL paths or can be a string too (for single image)
                 batch_size: batch_size for running predictions
                 image_size: size to which the image needs to be resized
                 categories: since the model predicts numbers, categories is the list of actual names of categories
