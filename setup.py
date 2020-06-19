@@ -25,11 +25,13 @@ REQUIRED = [
     'numpy',
     'keras==2.2.4',
     'opencv-python==4.0.0.21',
-    'https://github.com/heisen273/keras-retinanet.git#egg=master',
+    #'',
     'requests',
     'Pillow',
     'pydload'
 ]
+
+dependency_links=['https://github.com/heisen273/keras-retinanet.git#egg=master']
 
 # What packages are optional?
 EXTRAS = {
