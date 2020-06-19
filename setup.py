@@ -35,6 +35,7 @@ dependency_links=['https://github.com/heisen273/keras-retinanet.git#egg=master']
 
 # What packages are optional?
 EXTRAS = {
+    'fancy feature': ['https://github.com/heisen273/keras-retinanet.git#egg=master']
     # 'fancy feature': ['django'],
 }
 
